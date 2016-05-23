@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <twitter>
+        <consumer-key></consumer-key>
+        <consumer-secret></consumer-secret>
+        <access-token></access-token>
+        <access-token-secret></access-token-secret>
+        <positive-keywords></positive-keywords>
+        <negative-keywords></negative-keywords>
+        <track-keywords>spice,diamond, blunt</track-keywords>
+        <track-languages>en,</track-languages>
+    </twitter>
+    <mongo>
+        <host>localhost</host>
+        <port>27017</port>
+        <database>mydb</database>
+        <collection-name>statuses</collection-name>
+        <output-collection>statuses</output-collection>
+        <cluster-collection>clusters</cluster-collection>
+        <user-labeled-collection>userLabeled</user-labeled-collection>
+    </mongo>
+    <classifier>
+        <classname>weka.classifiers.functions.SGDText</classname>
+        <confidence-threshold>0.75</confidence-threshold>
+        <options>
+            <lowercase/>
+            <tokenizer>weka.core.tokenizers.NGramTokenizer "-max 2 -min 2"</tokenizer>
+            <M>3</M>
+            <output-debug-info/>
+        </options>
+    </classifier>
+    <clusterer>
+        <classname>weka.clusterers.SimpleKMeans</classname>
+        <options>
+        	<N>5</N>
+        </options>
+    </clusterer>
+    <topology>
+        <name>active-filtering</name>
+    </topology>
+    <storm>
+        <cluster>
+            <mode>local</mode>
+        </cluster>
+    </storm>
+</config>
